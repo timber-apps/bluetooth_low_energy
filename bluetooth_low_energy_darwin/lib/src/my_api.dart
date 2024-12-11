@@ -139,6 +139,17 @@ extension MyCentralArgsX on MyCentralArgs {
 // ToArgs
 extension UUIDX on UUID {
   String toArgs() {
+    if (isShort) {
+      var v2 = value[2].toRadixString(16).padLeft(2, '0');
+      var v3 = value[3].toRadixString(16).padLeft(2, '0');
+      var result ="$v2$v3";
+      if (value[0] != 0 && value[1] != 0) {
+        var v0 = value[0].toRadixString(16).padLeft(2, '0');
+        var v1 = value[1].toRadixString(16).padLeft(2, '0');
+        result = "$v0$v1$result";
+      }
+      return result;
+    }
     return toString();
   }
 }
